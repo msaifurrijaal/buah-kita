@@ -1,15 +1,17 @@
 import AxiosInstance from "../api/AxiosInstance";
 
-const getBuah = async () => {
+export const loginAuth = async (username: string, password: string) => {
   const axiosInstance = AxiosInstance();
-
   try {
     const response = await axiosInstance
-      .get("product")
+      .post("login", {
+        username,
+        password,
+      })
       .then((res) => {
         return {
           success: true,
-          data: res.data,
+          data: res,
         };
       })
       .catch((err) => {
@@ -21,12 +23,9 @@ const getBuah = async () => {
 
     return response;
   } catch (error) {
-    console.error(error);
     return {
       success: false,
       data: error,
     };
   }
 };
-
-export default getBuah;

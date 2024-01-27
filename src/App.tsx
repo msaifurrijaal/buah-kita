@@ -1,5 +1,7 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import HomePage from "./pages/home";
+import LoginPage from "./pages/login";
+import { IsLoginContextProvider } from "./context/IsLogin";
 
 function App() {
   const router = createBrowserRouter([
@@ -7,11 +9,17 @@ function App() {
       path: "/",
       element: <HomePage />,
     },
+    {
+      path: "/login",
+      element: <LoginPage />,
+    },
   ]);
 
   return (
     <>
-      <RouterProvider router={router} />
+      <IsLoginContextProvider>
+        <RouterProvider router={router} />
+      </IsLoginContextProvider>
     </>
   );
 }

@@ -1,15 +1,26 @@
+import { useCookies } from "react-cookie";
 import AxiosInstance from "../api/AxiosInstance";
 
-const getBuah = async () => {
+export const logoutAuth = async () => {
   const axiosInstance = AxiosInstance();
+  const [cookies] = useCookies(["token"]);
 
   try {
     const response = await axiosInstance
-      .get("product")
+      .post(
+        "user/logout",
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${cookies}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
       .then((res) => {
         return {
           success: true,
-          data: res.data,
+          data: res,
         };
       })
       .catch((err) => {
@@ -18,15 +29,11 @@ const getBuah = async () => {
           data: err,
         };
       });
-
     return response;
   } catch (error) {
-    console.error(error);
     return {
       success: false,
       data: error,
     };
   }
 };
-
-export default getBuah;

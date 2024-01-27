@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
@@ -7,9 +7,16 @@ import {
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
+import { useIsUserLogin } from "../../../context/IsLogin";
 
 const Navbar = () => {
   let [open, setOpen] = useState(false);
+  const { isUserLogin } = useIsUserLogin();
+
+  const handleLogout = async () => {
+
+  }
+
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-50">
       <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
@@ -60,49 +67,74 @@ const Navbar = () => {
               Kontak
             </Link>
           </li>
-          <li className="group">
-            <Link
-              to="#contact"
-              className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
-            >
-              <FontAwesomeIcon icon={faUser} style={{ color: "#000000" }} />
-            </Link>
-          </li>
-          <li className="group">
-            <Link
-              to="/cart"
-              className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
-            >
-              <div>
-                <FontAwesomeIcon
-                  icon={faCartShopping}
-                  style={{ color: "#000000" }}
-                />
-                <p className="ms-1 inline-block">{0}</p>
-              </div>
-            </Link>
-          </li>
-          <li className="group">
-            <Link to="" className=" mx-4 md:mx-2 flex">
-              <div
-                className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
+          {isUserLogin && (
+            <li className="group">
+              <Link
+                to="#contact"
+                className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
+              >
+                <FontAwesomeIcon icon={faUser} style={{ color: "#000000" }} />
+              </Link>
+            </li>
+          )}
+          {isUserLogin && (
+            <li className="group">
+              <Link
+                to="/cart"
+                className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
+              >
+                <div>
+                  <FontAwesomeIcon
+                    icon={faCartShopping}
+                    style={{ color: "#000000" }}
+                  />
+                  <p className="ms-1 inline-block">{0}</p>
+                </div>
+              </Link>
+            </li>
+          )}
+
+          {isUserLogin && (
+            <li className="group">
+              <Link 
+              to=""
+              onClick={handleLogout}
+               className=" mx-4 md:mx-2 flex">
+                <div
+                  className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
               group-hover:bg-white group-hover:border group-hover:border-primary group-hover:rounded-md 
               group-hover:text-primary transition duration-300"
-              >
-                Masuk
-              </div>
-            </Link>
-          </li>
-          <li className="group">
-            <Link to="" className="mx-4 md:mx-2 flex mt-3 md:mt-0">
-              <div
-                className="font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
+                >
+                  Logout
+                </div>
+              </Link>
+            </li>
+          )}
+          {!isUserLogin && (
+            <li className="group">
+              <Link to="/login" className=" mx-4 md:mx-2 flex">
+                <div
+                  className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
+              group-hover:bg-white group-hover:border group-hover:border-primary group-hover:rounded-md 
+              group-hover:text-primary transition duration-300"
+                >
+                  Masuk
+                </div>
+              </Link>
+            </li>
+          )}
+          {!isUserLogin && (
+            <li className="group">
+              <Link to="/register" className="mx-4 md:mx-2 flex mt-3 md:mt-0">
+                <div
+                  className="font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
               group-hover:bg-primary group-hover:text-white transition duration-300"
-              >
-                Daftar
-              </div>
-            </Link>
-          </li>
+                >
+                  Daftar
+                </div>
+              </Link>
+            </li>
+          )}
         </ul>
       </div>
     </div>

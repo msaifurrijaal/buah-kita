@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import getBuah from "../../services/data/getBuah";
 import { Fruit } from "../../types/interfaces/fruit";
 import ListProduct from "../../components/fragments/home/ListProducts";
-import Button from "../../components/elements/button";
 
 const HomePage = () => {
   const [products, setProducts] = useState<Fruit[]>([]);
@@ -17,10 +16,10 @@ const HomePage = () => {
         if (result.success) {
           setProducts(result.data.data.data);
         } else {
-          console.error("Error:", result.data);
+          alert(`Error : ${result.data}`);
         }
       } catch (error) {
-        console.error("Fetch error:", error);
+        alert(`Error : ${error}`);
       }
     };
 
