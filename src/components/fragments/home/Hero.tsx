@@ -1,10 +1,12 @@
-import Button from "../elements/button";
+import Button from "../../elements/button";
 
 const Hero = () => {
   return (
     <div className="container px-8 min-h-screen flex flex-wrap items-center">
       <div className="w-full md:w-1/2">
-        <p className="py-2 px-4 bg-green-100 inline-block text-primary rounded-xl">Buah segar dan menyehatkan 🍉</p>
+        <p className="py-2 px-4 bg-green-100 inline-block text-primary rounded-xl">
+          Buah segar dan menyehatkan 🍉
+        </p>
         <h1 className="text-4xl lg:text-6xl font-bold mt-4">
           Buah-buahan yang <span className="text-primary">Anda Suka </span>
           Dikirimkan kepada Anda
@@ -15,16 +17,16 @@ const Hero = () => {
         </p>
         <div className="flex mt-6 lg:mt-10">
           <Button
-            classname="me-1 bg-primary text-white font-semibold rounded-md 
+            classname="me-1 bg-primary text-white font-semibold
           hover:bg-white hover:text-primary hover:border hover:border-primary"
           >
             Mulai
           </Button>
           <Button
-            classname="ms-1 hover:bg-primary hover:text-white font-semibold rounded-md 
+            classname="ms-1 hover:bg-primary hover:text-white font-semibold
           bg-white text-primary border border-primary"
           >
-            Explore Menu
+            Explore Buah
           </Button>
         </div>
       </div>

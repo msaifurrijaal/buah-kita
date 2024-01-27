@@ -11,7 +11,7 @@ import { Link } from "react-router-dom";
 const Navbar = () => {
   let [open, setOpen] = useState(false);
   return (
-    <div className="shadow-md w-full fixed top-0 left-0">
+    <div className="shadow-md w-full fixed top-0 left-0 z-50">
       <div className="md:flex items-center justify-between bg-white py-4 md:px-10 px-7">
         <div className="cursor-pointer">
           <img
@@ -52,15 +52,6 @@ const Navbar = () => {
               Produk
             </Link>
           </li>
-          <li className="group ">
-            <Link
-              to="/about"
-              className="font-medium text-base text-dark py-2 mx-4 flex group-hover:text-primary "
-            >
-              Tentang Kami
-            </Link>
-          </li>
-
           <li className="group">
             <Link
               to="/contact"
@@ -96,7 +87,7 @@ const Navbar = () => {
               <div
                 className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
               group-hover:bg-white group-hover:border group-hover:border-primary group-hover:rounded-md 
-              group-hover:text-primary"
+              group-hover:text-primary transition duration-300"
               >
                 Masuk
               </div>
@@ -104,8 +95,10 @@ const Navbar = () => {
           </li>
           <li className="group">
             <Link to="" className="mx-4 md:mx-2 flex mt-3 md:mt-0">
-              <div className="font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
-              group-hover:bg-primary group-hover:text-white">
+              <div
+                className="font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
+              group-hover:bg-primary group-hover:text-white transition duration-300"
+              >
                 Daftar
               </div>
             </Link>

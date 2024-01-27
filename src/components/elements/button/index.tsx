@@ -1,4 +1,4 @@
-import React, { ReactNode, MouseEvent } from "react";
+import { ReactNode, MouseEvent } from "react";
 
 type ButtonProps = {
   children?: ReactNode;
@@ -15,7 +15,7 @@ const Button = ({
 }: ButtonProps) => {
   return (
     <button
-      className={`h-10 px-6 font-normal ${classname}`}
+      className={`h-10 px-6 font-normal transition duration-300 rounded-md ${classname}`}
       onClick={onClick}
       type={type}
     >
