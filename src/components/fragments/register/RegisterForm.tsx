@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 import InputForm from "../../elements/input";
 import Button from "../../elements/button";
 import Loading from "../../elements/loading";
@@ -29,9 +29,9 @@ const RegisterForm = () => {
     confirmPass: "",
   });
   const [errors, setErrors] = useState<ErrorsMessageValidation>({});
-  const [registerFailed, setRegisterfailed] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
-  const setCookie = useCookies(["token"])[1];
+  const [registerFailed, ] = useState("");
+  const [isLoading, ] = useState(false);
+//   const setCookie = useCookies(["token"])[1];
 
   const usernameRef = useRef<HTMLInputElement | null>(null);
 
