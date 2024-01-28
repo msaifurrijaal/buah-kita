@@ -4,6 +4,7 @@ import LoginPage from "./pages/login";
 import { IsLoginContextProvider } from "./context/IsLogin";
 import ProductPage from "./pages/products";
 import RegisterPage from "./pages/register";
+import DetailProductPage from "./pages/detail-product";
 
 function App() {
   const router = createBrowserRouter([
@@ -22,6 +23,10 @@ function App() {
     {
       path: "/products",
       element: <ProductPage />,
+    },
+    {
+      path: "/product/:id",
+      element: <DetailProductPage />,
     },
   ]);
 

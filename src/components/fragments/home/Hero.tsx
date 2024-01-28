@@ -8,8 +8,8 @@ const Hero = () => {
           Buah segar dan menyehatkan 🍉
         </p>
         <h1 className="text-4xl lg:text-6xl font-bold mt-4">
-          Buah-buahan yang <span className="text-primary">Anda Suka </span>
-          Dikirimkan kepada Anda
+          <span className="text-accent">Buah-buahan</span> yang <span className="text-primary">Anda Suka </span>
+          Dikirimkan kepada <span className="text-accent">Anda</span>
         </h1>
         <p className="text-base font-semibold mt-6 lg:mt-10">
           Selamatkan Buah, Harganya Terjangkau! Beli Buah Segar Berkualitas,

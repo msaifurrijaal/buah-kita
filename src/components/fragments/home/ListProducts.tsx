@@ -36,7 +36,9 @@ const ListProduct = ({ products }: ListProductProps) => {
               ))
             : products
                 .slice(0, 4)
-                .map((item) => <CardProduct {...item} key={item.id} />)}
+                .map((item) => (
+                  <CardProduct fruit={item} padding="px-6" key={item.id} />
+                ))}
         </div>
         <Button
           classname="bg-primary text-white mt-6

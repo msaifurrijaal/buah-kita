@@ -59,7 +59,7 @@ const HomePage = () => {
             </div>
           </div>
           <div className="w-full sm:w-1/2 mt-6 sm:mt-0 text-center sm:text-start">
-            <p className="text-primary text-xl font-medium">- Kami Adalah -</p>
+            <p className="text-accent text-xl font-medium">- Kami Adalah -</p>
             <h1 className="text-4xl font-bold mt-2 md:mt-4">
               Menyelamatkan Buah-Buahan Berkualitas dari Food Waste
             </h1>
