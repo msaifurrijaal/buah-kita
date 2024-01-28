@@ -8,14 +8,27 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useIsUserLogin } from "../../../context/IsLogin";
+import { logoutAuth } from "../../../services/auth/logoutAuth";
+import { useCookies } from "react-cookie";
 
 const Navbar = () => {
   let [open, setOpen] = useState(false);
   const { isUserLogin } = useIsUserLogin();
+  const [cookies, , removeCookie] = useCookies(["token"]);
 
   const handleLogout = async () => {
-
-  }
+    try {
+      const result = await logoutAuth(cookies.token);
+      if (result.success) {
+        removeCookie("token");
+        window.location.href = "/login";
+      } else {
+        console.log(result.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div className="shadow-md w-full fixed top-0 left-0 z-50">
@@ -96,10 +109,7 @@ const Navbar = () => {
 
           {isUserLogin && (
             <li className="group">
-              <Link 
-              to=""
-              onClick={handleLogout}
-               className=" mx-4 md:mx-2 flex">
+              <Link to="" onClick={handleLogout} className=" mx-4 md:mx-2 flex">
                 <div
                   className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
               group-hover:bg-white group-hover:border group-hover:border-primary group-hover:rounded-md 

@@ -1,4 +1,4 @@
-import { Ref, forwardRef } from "react";
+import { ChangeEvent, Ref, forwardRef } from "react";
 import Label from "./Label";
 import Input from "./Input";
 
@@ -8,15 +8,32 @@ type InputFormProps = {
   placeholder: string;
   label: string;
   classname: string;
+  errorMessage: string | undefined;
+  onInputChange: (e: ChangeEvent<HTMLInputElement>) => void;
 };
 
 const InputForm = forwardRef(
   (props: InputFormProps, ref: Ref<HTMLInputElement>) => {
-    const { classname, name, label, type, placeholder } = props;
+    const {
+      classname,
+      name,
+      label,
+      type,
+      placeholder,
+      onInputChange,
+      errorMessage,
+    } = props;
     return (
       <div className={`w-full ${classname}`}>
         <Label htmlFor={name}>{label}</Label>
-        <Input type={type} name={name} placeholder={placeholder} ref={ref} />
+        <Input
+          type={type}
+          name={name}
+          placeholder={placeholder}
+          ref={ref}
+          onInputChange={onInputChange}
+        />
+        {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       </div>
     );
   }

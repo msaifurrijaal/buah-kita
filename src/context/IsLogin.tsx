@@ -14,11 +14,11 @@ const IsLoginContext = createContext<IsLoginContextProps>(
   {} as IsLoginContextProps
 );
 
-const IsLoginContextProvider = ({
-  children,
-}: IsLoginContextProviderProps) => {
+const IsLoginContextProvider = ({ children }: IsLoginContextProviderProps) => {
   const [cookies] = useCookies(["token"]);
-  const [isUserLogin, setIsUserLogin] = useState<boolean | null>(!!cookies);
+  const [isUserLogin, setIsUserLogin] = useState<boolean | null>(
+    !!cookies.token
+  );
 
   return (
     <IsLoginContext.Provider value={{ isUserLogin, setIsUserLogin }}>

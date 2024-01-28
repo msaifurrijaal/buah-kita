@@ -1,28 +1,35 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-import Button from "../../elements/button";
-import InputForm from "../../elements/input";
-import { loginAuth } from "../../../services/auth/loginAuth";
-import Loading from "../../elements/loading";
 import { useCookies } from "react-cookie";
+import InputForm from "../../elements/input";
+import Button from "../../elements/button";
+import Loading from "../../elements/loading";
 
 type ValidationErrors = {
   username?: string;
+  email?: string;
+  phone?: string;
   password?: string;
+  confirmPass?: string;
 };
 
 type ErrorsMessageValidation = {
   username?: string;
+  email?: string;
+  phone?: string;
   password?: string;
+  confirmPass?: string;
 };
 
-const LoginForm = () => {
+const RegisterForm = () => {
   const [formData, setFormData] = useState({
     username: "",
+    email: "",
+    phone: "",
     password: "",
+    confirmPass: "",
   });
-
   const [errors, setErrors] = useState<ErrorsMessageValidation>({});
-  const [loginFailed, setLoginFailed] = useState("");
+  const [registerFailed, setRegisterfailed] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const setCookie = useCookies(["token"])[1];
 
@@ -42,10 +49,24 @@ const LoginForm = () => {
       validationErrors.username = "username is required";
     }
 
+    if (!formData.email.trim()) {
+      validationErrors.email = "email is required";
+    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+      validationErrors.email = "email is not valid";
+    }
+
+    if (!formData.phone.trim()) {
+      validationErrors.phone = "username is required";
+    }
+
     if (!formData.password.trim()) {
       validationErrors.password = "password is required";
     } else if (formData.password.length < 6) {
       validationErrors.password = "password should be at least 6 char";
+    }
+
+    if (formData.confirmPass !== formData.password) {
+      validationErrors.confirmPass = "password not matched";
     }
 
     setErrors(validationErrors);
@@ -60,37 +81,17 @@ const LoginForm = () => {
     usernameRef.current?.focus();
   }, []);
 
-  const handleLogin = async (event: FormEvent<HTMLFormElement>) => {
+  const handleRegister = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (validationForm()) {
-      setIsLoading(true);
-
-      const data = {
-        username: (event.target as any).username.value,
-        password: (event.target as any).password.value,
-      };
-
-      try {
-        const result = await loginAuth(data.username, data.password);
-        setIsLoading(false);
-        if (result.success) {
-          setLoginFailed("");
-          setCookie("token", result.data.data.data.token);
-          window.location.href = "/";
-        } else {
-          setLoginFailed(result.data.response.data.message);
-        }
-      } catch (error) {
-        setIsLoading(false);
-        console.log(error);
-      }
+      alert("Register user masih dalam tahap development");
     }
   };
 
   return (
     <>
-      <form onSubmit={handleLogin}>
+      <form onSubmit={handleRegister}>
         <InputForm
           classname="mt-8"
           label="Username"
@@ -103,6 +104,24 @@ const LoginForm = () => {
         />
         <InputForm
           classname="mt-4"
+          label="Email"
+          name="email"
+          placeholder="Silahkan masukkan email anda "
+          type="email"
+          onInputChange={handleChange}
+          errorMessage={errors.email}
+        />
+        <InputForm
+          classname="mt-4"
+          label="No Telepon"
+          name="phone"
+          placeholder="Silahkan masukkan nomor telepon anda "
+          type="number"
+          onInputChange={handleChange}
+          errorMessage={errors.phone}
+        />
+        <InputForm
+          classname="mt-4"
           label="Password"
           name="password"
           placeholder="Silahkan masukkan password anda"
@@ -110,18 +129,27 @@ const LoginForm = () => {
           onInputChange={handleChange}
           errorMessage={errors.password}
         />
+        <InputForm
+          classname="mt-4"
+          label="Konfirmasi Password"
+          name="confirmPass"
+          placeholder="Silahkan masukkan konfirmasi password anda"
+          type="password"
+          onInputChange={handleChange}
+          errorMessage={errors.confirmPass}
+        />
         <div className="flex justify-center">
           <Button classname="bg-primary text-white mt-6 lg:mt-12" type="submit">
-            Masuk
+            Daftar
           </Button>
         </div>
       </form>
-      {loginFailed && (
-        <p className="text-red-500 text-center mt-5">{loginFailed}</p>
+      {registerFailed && (
+        <p className="text-red-500 text-center mt-5">{registerFailed}</p>
       )}
       {isLoading && <Loading />}
     </>
   );
 };
 
-export default LoginForm;
+export default RegisterForm;

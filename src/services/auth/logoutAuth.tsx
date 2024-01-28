@@ -1,9 +1,7 @@
-import { useCookies } from "react-cookie";
 import AxiosInstance from "../api/AxiosInstance";
 
-export const logoutAuth = async () => {
+export const logoutAuth = async (token: string) => {
   const axiosInstance = AxiosInstance();
-  const [cookies] = useCookies(["token"]);
 
   try {
     const response = await axiosInstance
@@ -12,8 +10,7 @@ export const logoutAuth = async () => {
         {},
         {
           headers: {
-            Authorization: `Bearer ${cookies}`,
-            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
           },
         }
       )
