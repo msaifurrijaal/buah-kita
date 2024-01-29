@@ -7,7 +7,6 @@ import Button from "../../elements/button";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { rupiahFormatter } from "../../../utils/rupiah-formatter";
-import PopupDialog from "../../elements/popup/PopupDialog";
 import { useIsUserLogin } from "../../../context/IsLogin";
 import { useNavigate } from "react-router-dom";
 import { CheckoutData } from "../../../types/interfaces/checkoutData";
@@ -19,8 +18,8 @@ type CartSectionProps = {
 
 const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
   const [productCart, setProductCart] = useState(1);
-  const [modalOpen, setModalOpen] = useState(false);
-  const [isLoad, setIsLoad] = useState(false);
+  // const [modalOpen, setModalOpen] = useState(false);
+  // const [isLoad, setIsLoad] = useState(false);
   const { isUserLogin } = useIsUserLogin();
   const navigate = useNavigate();
 
