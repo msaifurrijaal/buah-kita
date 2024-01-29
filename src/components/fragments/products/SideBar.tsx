@@ -1,84 +1,34 @@
+import { Location } from "../../../types/interfaces/location";
+
 type SideBarProps = {
   setFilterLoc: React.Dispatch<React.SetStateAction<string>>;
+  locations: Location[];
 };
 
-const SideBar = ({ setFilterLoc }: SideBarProps) => {
+const SideBar = ({ setFilterLoc, locations }: SideBarProps) => {
   return (
-    <div className="w-full md:w-1/4 px-4">
+    <div className="hidden md:block w-full md:w-1/4 px-4">
       <div className="w-full rounded-lg shadow-md p-6">
         <h3 className="text-xl font-semibold">Filter berdasarkan lokasi</h3>
         <form action="" className="mt-4">
-          <input
-            type="radio"
-            id="all"
-            name="place"
-            value="Semua"
-            className="mb-3"
-            onChange={(e) => setFilterLoc(e.target.value)}
-          />
-          <label htmlFor="batu" className="ms-2">
-            Semua
-          </label>
-          <br />
-          <input
-            type="radio"
-            id="batu"
-            name="place"
-            value="Kota Batu"
-            className="mb-3"
-            onChange={(e) => setFilterLoc(e.target.value)}
-          />
-          <label htmlFor="batu" className="ms-2">
-            Batu
-          </label>
-          <br />
-          <input
-            type="radio"
-            id="bojonegoro"
-            name="place"
-            value="Kabupaten Bojonegoro"
-            className="mb-3"
-            onChange={(e) => setFilterLoc(e.target.value)}
-          />
-          <label htmlFor="bojonegoro" className="ms-2">
-            Bojonegoro
-          </label>
-          <br />
-          <input
-            type="radio"
-            id="boyolali"
-            name="place"
-            value="Kota Boyolali"
-            className="mb-3"
-            onChange={(e) => setFilterLoc(e.target.value)}
-          />
-          <label htmlFor="boyolali" className="ms-2">
-            Boyolali
-          </label>
-          <br />
-          <input
-            type="radio"
-            id="kediri"
-            name="place"
-            value="Kota Kediri"
-            className="mb-3"
-            onChange={(e) => setFilterLoc(e.target.value)}
-          />
-          <label htmlFor="kediri" className="ms-2">
-            Kediri
-          </label>
-          <br />
-          <input
-            type="radio"
-            id="malang"
-            name="place"
-            value="Kota Malang"
-            className="mb-3"
-            onChange={(e) => setFilterLoc(e.target.value)}
-          />
-          <label htmlFor="malang" className="ms-2">
-            Malang
-          </label>
+          {locations.map((location) => {
+            return (
+              <div key={location.city}>
+                <input
+                  type="radio"
+                  id="all"
+                  name="place"
+                  value={location.city}
+                  className="mb-3"
+                  onChange={(e) => setFilterLoc(e.target.value)}
+                />
+                <label htmlFor="batu" className="ms-2">
+                  {location.city}
+                </label>
+                <br />
+              </div>
+            );
+          })}
         </form>
       </div>
       <img

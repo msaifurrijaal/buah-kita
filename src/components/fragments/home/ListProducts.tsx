@@ -41,8 +41,8 @@ const ListProduct = ({ products }: ListProductProps) => {
                 ))}
         </div>
         <Button
-          classname="bg-primary text-white mt-6
-      hover:bg-white hover:text-primary hover:border hover:border-primary"
+          classname="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
+          hover:bg-green-700 mt-4"
         >
           Lihat Semua Buah
         </Button>

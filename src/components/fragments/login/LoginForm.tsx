@@ -75,6 +75,7 @@ const LoginForm = () => {
         const result = await loginAuth(data.username, data.password);
         setIsLoading(false);
         if (result.success) {
+          console.log(result.data.data.data.token)
           setLoginFailed("");
           setCookie("token", result.data.data.data.token);
           window.location.href = "/";

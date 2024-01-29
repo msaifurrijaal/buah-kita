@@ -112,8 +112,7 @@ const Navbar = () => {
               <Link to="" onClick={handleLogout} className=" mx-4 md:mx-2 flex">
                 <div
                   className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
-              group-hover:bg-white group-hover:border group-hover:border-primary group-hover:rounded-md 
-              group-hover:text-primary transition duration-300"
+              group-hover:bg-green-700"
                 >
                   Logout
                 </div>
@@ -125,8 +124,7 @@ const Navbar = () => {
               <Link to="/login" className=" mx-4 md:mx-2 flex">
                 <div
                   className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
-              group-hover:bg-white group-hover:border group-hover:border-primary group-hover:rounded-md 
-              group-hover:text-primary transition duration-300"
+                  group-hover:bg-green-700"
                 >
                   Masuk
                 </div>
@@ -138,7 +136,7 @@ const Navbar = () => {
               <Link to="/register" className="mx-4 md:mx-2 flex mt-3 md:mt-0">
                 <div
                   className="font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
-              group-hover:bg-primary group-hover:text-white transition duration-300"
+              group-hover:border-green-700 group-hover:text-green-700"
                 >
                   Daftar
                 </div>

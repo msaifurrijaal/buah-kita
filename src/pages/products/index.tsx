@@ -2,20 +2,45 @@ import { ChangeEvent, useEffect, useRef, useState } from "react";
 import MainLayout from "../../components/partials/layout/MainLayout";
 import { Fruit } from "../../types/interfaces/fruit";
 import getBuah from "../../services/data/getBuah";
-import CardProduct from "../../components/elements/card-product";
 import SideBar from "../../components/fragments/products/SideBar";
+import ListProducts from "../../components/fragments/products/ListProducts";
+import Dropdown from "../../components/elements/dropdown";
+import { Location } from "../../types/interfaces/location";
+
+const locationProducts: Location[] = [
+  {
+    city: "Semua",
+  },
+  {
+    city: "Kota Batu",
+  },
+  {
+    city: "Kabupaten Bojonegoro",
+  },
+  {
+    city: "Kota Boyolali",
+  },
+  {
+    city: "Kota Kediri",
+  },
+  {
+    city: "Kota Malang",
+  },
+];
 
 const ProductPage = () => {
   const [products, setProducts] = useState<Fruit[]>([]);
   const [productsFilter, setProductsFilter] = useState<Fruit[]>(products);
   const [filterLoc, setFilterLoc] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const searchref = useRef<HTMLInputElement | null>(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const result = await getBuah();
-
+        setIsLoading(false);
         if (result.success) {
           setProducts(result.data.data.data);
         } else {
@@ -50,16 +75,22 @@ const ProductPage = () => {
       fruit.name.toLowerCase().includes(value.toLowerCase())
     );
     setProductsFilter(filteredProducts);
-    console.log(value)
+    console.log(value);
   };
 
   return (
     <MainLayout>
       <div className="py-16 md:py-20 min-h-screen">
         <div className="container flex flex-wrap pt-6">
-          <SideBar setFilterLoc={setFilterLoc} />
+          <SideBar setFilterLoc={setFilterLoc} locations={locationProducts} />
           <div className="w-full md:w-3/4 px-4 mt-4 md:mt-0">
             <div className="w-full">
+              <div className="block md:hidden mb-4">
+                <Dropdown
+                  locations={locationProducts}
+                  setFilterLoc={setFilterLoc}
+                />
+              </div>
               <form>
                 <label
                   htmlFor="default-search"
@@ -101,11 +132,7 @@ const ProductPage = () => {
                   </button>
                 </div>
               </form>
-              <div className="mt-6 flex flex-wrap justify-start">
-                {productsFilter.map((item) => (
-                  <CardProduct fruit={item} padding="px-2" key={item.id} />
-                ))}
-              </div>
+              <ListProducts isLoading={isLoading} products={productsFilter} />
             </div>
           </div>
         </div>

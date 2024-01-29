@@ -44,7 +44,7 @@ const CardProduct = ({ fruit, padding }: CardProductProps) => {
             {fruit.discount > 0 && (
               <div className="flex items-center mt-2">
                 <div className="text-xs text-red-700 bg-red-200 py-1 px-2 rounded-md ">
-                  {fruit.discount}%
+                  {fruit.discount * 100}%
                 </div>
                 <p className="ms-2 text-sm line-through">
                   {rupiahFormatter(fruit.price)}
