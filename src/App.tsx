@@ -6,6 +6,7 @@ import ProductPage from "./pages/products";
 import RegisterPage from "./pages/register";
 import DetailProductPage from "./pages/detail-product";
 import PaymentPage from "./pages/payment";
+import InvoicePage from "./pages/invoice";
 
 function App() {
   const router = createBrowserRouter([
@@ -32,6 +33,10 @@ function App() {
     {
       path: "/payment",
       element: <PaymentPage />,
+    },
+    {
+      path: "/invoice",
+      element: <InvoicePage />,
     },
   ]);
 

@@ -33,14 +33,14 @@ const PopupDialog = ({
             className="font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
             group-hover:border-green-700 group-hover:text-green-700"
           >
-            Cancel
+            Kembali
           </button>
           <button
             onClick={() => yOnClick()}
             className="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
             group-hover:bg-green-700"
           >
-            Continue
+            Lanjutkan
           </button>
         </div>
         {isLoading && <Loading />}

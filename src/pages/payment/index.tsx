@@ -1,15 +1,16 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import MainLayout from "../../components/partials/layout/MainLayout";
 import { CheckoutData } from "../../types/interfaces/checkoutData";
 import WarningCart from "../../components/elements/payment/WarningCard";
 import ButtonAddCart from "../../components/elements/button/ButtonAddCart";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { PaymentMethod } from "../../types/interfaces/paymentMethod";
 import PaymentMethodCard from "../../components/elements/payment/PaymentMethodCard";
 import ShoppingSummary from "../../components/fragments/payment/ShoppingSummary";
 import { postBuy } from "../../services/data/postBuy";
 import { useCookies } from "react-cookie";
 import PopupLoading from "../../components/elements/popup/PopupLoading";
+import { Invoice } from "../../types/interfaces/invoice";
 
 const paymentMethod: PaymentMethod[] = [
   {
@@ -40,6 +41,13 @@ const PaymentPage = () => {
   const [productCart, setProductCart] = useState(checkoutData?.amount ?? 1);
   const [isLoading, setIsLoading] = useState(false);
   const [cookies, ,] = useCookies(["token"]);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (checkoutData == undefined) {
+      window.location.href = "/";
+    }
+  }, []);
 
   const handleBuy = async () => {
     try {
@@ -53,7 +61,8 @@ const PaymentPage = () => {
       setIsLoading(false);
       if (result.success) {
         console.log(result.data.data);
-        console.log(result.data.data.status_message);
+        const invoice: Invoice = result.data.data.data;
+        navigate("/invoice", { state: { invoice } });
       } else {
         console.log(result.data.message);
       }

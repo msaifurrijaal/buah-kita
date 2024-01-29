@@ -10,6 +10,7 @@ import { rupiahFormatter } from "../../../utils/rupiah-formatter";
 import { useIsUserLogin } from "../../../context/IsLogin";
 import { useNavigate } from "react-router-dom";
 import { CheckoutData } from "../../../types/interfaces/checkoutData";
+import PopupDialog from "../../elements/popup/PopupDialog";
 
 type CartSectionProps = {
   isLoading: boolean;
@@ -18,8 +19,7 @@ type CartSectionProps = {
 
 const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
   const [productCart, setProductCart] = useState(1);
-  // const [modalOpen, setModalOpen] = useState(false);
-  // const [isLoad, setIsLoad] = useState(false);
+  const [modalOpen, setModalOpen] = useState(false);
   const { isUserLogin } = useIsUserLogin();
   const navigate = useNavigate();
 
@@ -32,7 +32,13 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
         };
         navigate("/payment", { state: { checkoutData } });
       }
+    } else {
+      setModalOpen(true);
     }
+  };
+
+  const navigateToLoginPage = async () => {
+    window.location.href = "/login";
   };
 
   return (
@@ -90,7 +96,14 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
         </div>
       )}
       {isLoading && <Skeleton height="200px" className="" width="100%" />}
-      {/* <PopupDialog title="test" isLoading={false} nOnClick={() => false} yOnClick={async () => console.log("")} /> */}
+      {modalOpen && (
+        <PopupDialog
+          title="Anda belum login, silahkan login terlebih dahulu!"
+          isLoading={false}
+          nOnClick={setModalOpen}
+          yOnClick={navigateToLoginPage}
+        />
+      )}
     </div>
   );
 };
