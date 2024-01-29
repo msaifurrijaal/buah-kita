@@ -1,4 +1,4 @@
-import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MainLayout from "../../components/partials/layout/MainLayout";
 import { Fruit } from "../../types/interfaces/fruit";
 import getBuah from "../../services/data/getBuah";
@@ -69,14 +69,14 @@ const ProductPage = () => {
     setProductsFilter(filteredProducts);
   }, [filterLoc]);
 
-  const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value;
-    let filteredProducts = productsFilter.filter((fruit) =>
-      fruit.name.toLowerCase().includes(value.toLowerCase())
-    );
-    setProductsFilter(filteredProducts);
-    console.log(value);
-  };
+  // const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value;
+  //   let filteredProducts = productsFilter.filter((fruit) =>
+  //     fruit.name.toLowerCase().includes(value.toLowerCase())
+  //   );
+  //   setProductsFilter(filteredProducts);
+  //   console.log(value);
+  // };
 
   return (
     <MainLayout>
@@ -120,7 +120,7 @@ const ProductPage = () => {
                     id="default-search"
                     className="block w-full p-4 ps-10 text-sm border border-gray-300 bg-gray-50 focus:ring-primary focus:border-primary"
                     placeholder="Cari buah-buahan..."
-                    onChange={handleInputChange}
+                    // onChange={handleInputChange}
                     ref={searchref}
                     required
                   />

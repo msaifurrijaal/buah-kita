@@ -7,6 +7,7 @@ import RegisterPage from "./pages/register";
 import DetailProductPage from "./pages/detail-product";
 import PaymentPage from "./pages/payment";
 import InvoicePage from "./pages/invoice";
+import HistoryPage from "./pages/history";
 
 function App() {
   const router = createBrowserRouter([
@@ -37,6 +38,10 @@ function App() {
     {
       path: "/invoice",
       element: <InvoicePage />,
+    },
+    {
+      path: "/history",
+      element: <HistoryPage />,
     },
   ]);
 

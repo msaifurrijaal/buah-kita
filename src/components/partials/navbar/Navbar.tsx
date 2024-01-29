@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faBars,
   faCartShopping,
+  faHistory,
   faUser,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
@@ -80,7 +81,7 @@ const Navbar = () => {
             </li>
             <li className="group">
               <Link
-                to="/contact"
+                to=""
                 className="font-medium text-base text-dark py-2 mx-4 flex group-hover:text-primary"
               >
                 Kontak
@@ -89,17 +90,20 @@ const Navbar = () => {
             {isUserLogin && (
               <li className="group">
                 <Link
-                  to="#contact"
+                  to="/history"
                   className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
                 >
-                  <FontAwesomeIcon icon={faUser} style={{ color: "#000000" }} />
+                  <FontAwesomeIcon
+                    icon={faHistory}
+                    style={{ color: "#000000" }}
+                  />
                 </Link>
               </li>
             )}
             {isUserLogin && (
               <li className="group">
                 <Link
-                  to="/cart"
+                  to=""
                   className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
                 >
                   <div>
@@ -109,6 +113,16 @@ const Navbar = () => {
                     />
                     <p className="ms-1 inline-block">{0}</p>
                   </div>
+                </Link>
+              </li>
+            )}
+            {isUserLogin && (
+              <li className="group">
+                <Link
+                  to=""
+                  className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
+                >
+                  <FontAwesomeIcon icon={faUser} style={{ color: "#000000" }} />
                 </Link>
               </li>
             )}
