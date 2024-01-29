@@ -6,6 +6,7 @@ import { faPencil } from "@fortawesome/free-solid-svg-icons";
 import Button from "../../elements/button";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { rupiahFormatter } from "../../../utils/rupiah-formatter";
 
 type CartSectionProps = {
   isLoading: boolean;
@@ -13,7 +14,7 @@ type CartSectionProps = {
 };
 
 const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
-  const [productCart, setProductCart] = useState(0);
+  const [productCart, setProductCart] = useState(1);
   return (
     <div className="w-full lg:w-3/12 mt-4 lg:mt-0 px-4">
       {fruit && !isLoading && (
@@ -28,12 +29,12 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
                   : setProductCart(productCart + 1)
               }
               decrementCart={() =>
-                productCart > 0
+                productCart > 1
                   ? setProductCart(productCart - 1)
                   : setProductCart(productCart)
               }
             />
-            <p className="ms-4">Total Stok : {fruit?.stock - productCart}</p>
+            <p className="ms-4">Sisa Stok : {fruit?.stock - productCart}</p>
           </div>
           <div className="flex items-center mt-4 cursor-pointer">
             <FontAwesomeIcon icon={faPencil} color="#4E9F3D" />
@@ -43,7 +44,18 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
           </div>
           <div className="flex items-center mt-2 justify-between">
             <p className="text-base text-gray-500">Subtotal</p>
-            <p className="text-lg font-semibold text-dark">Rp 45000</p>
+            <p className="text-lg font-semibold text-dark">
+              {fruit.discount > 0 ? (
+                <span>
+                  {rupiahFormatter(
+                    fruit.price * productCart -
+                      fruit.price * productCart * fruit.discount
+                  )}
+                </span>
+              ) : (
+                <span>{rupiahFormatter(fruit.price * productCart)}</span>
+              )}
+            </p>
           </div>
           <Button classname="font-medium text-base bg-primary text-white rounded-md py-2 px-4 hover:bg-green-700 mt-3 w-full">
             + Keranjang

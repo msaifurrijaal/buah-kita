@@ -16,13 +16,13 @@ const SideBar = ({ setFilterLoc, locations }: SideBarProps) => {
               <div key={location.city}>
                 <input
                   type="radio"
-                  id="all"
+                  id={location.city}
                   name="place"
                   value={location.city}
                   className="mb-3"
                   onChange={(e) => setFilterLoc(e.target.value)}
                 />
-                <label htmlFor="batu" className="ms-2">
+                <label htmlFor={location.city} className="ms-2">
                   {location.city}
                 </label>
                 <br />
