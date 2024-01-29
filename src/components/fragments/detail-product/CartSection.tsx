@@ -7,6 +7,10 @@ import Button from "../../elements/button";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
 import { rupiahFormatter } from "../../../utils/rupiah-formatter";
+import PopupDialog from "../../elements/popup/PopupDialog";
+import { useIsUserLogin } from "../../../context/IsLogin";
+import { useNavigate } from "react-router-dom";
+import { CheckoutData } from "../../../types/interfaces/checkoutData";
 
 type CartSectionProps = {
   isLoading: boolean;
@@ -15,6 +19,23 @@ type CartSectionProps = {
 
 const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
   const [productCart, setProductCart] = useState(1);
+  const [modalOpen, setModalOpen] = useState(false);
+  const [isLoad, setIsLoad] = useState(false);
+  const { isUserLogin } = useIsUserLogin();
+  const navigate = useNavigate();
+
+  const handleBuyProduct = () => {
+    if (isUserLogin) {
+      if (fruit != undefined) {
+        const checkoutData: CheckoutData = {
+          fruit: fruit,
+          amount: 1,
+        };
+        navigate("/payment", { state: { checkoutData } });
+      }
+    }
+  };
+
   return (
     <div className="w-full lg:w-3/12 mt-4 lg:mt-0 px-4">
       {fruit && !isLoading && (
@@ -63,12 +84,14 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
           <Button
             classname="mt-2 font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
             hover:border-green-700 hover:text-green-700 w-full"
+            onClick={handleBuyProduct}
           >
             Beli Sekarang
           </Button>
         </div>
       )}
       {isLoading && <Skeleton height="200px" className="" width="100%" />}
+      {/* <PopupDialog title="test" isLoading={false} nOnClick={() => false} yOnClick={async () => console.log("")} /> */}
     </div>
   );
 };

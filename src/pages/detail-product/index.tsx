@@ -7,6 +7,8 @@ import ImageSection from "../../components/fragments/detail-product/ImageSection
 import DesctiptionSection from "../../components/fragments/detail-product/DescriptionSection";
 import CartSection from "../../components/fragments/detail-product/CartSection";
 import CartUlasan from "../../components/elements/detail-product/CartUlasan";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 
 const DetailProductPage = () => {
   const { id } = useParams();
@@ -40,12 +42,20 @@ const DetailProductPage = () => {
           <DesctiptionSection isLoading={isLoading} fruit={product} />
           <CartSection isLoading={isLoading} fruit={product} />
           <div className="w-full lg:w-9/12 mt-4 px-4 lg:px-2">
-            <h1 className="text-base md:text-xl font-semibold">
-              Ulasan Pembeli
-            </h1>
-            <CartUlasan />
+            {!isLoading ? (
+              <div>
+                <h1 className="text-base md:text-xl font-semibold">
+                  Ulasan Pembeli
+                </h1>
+                <CartUlasan />
+              </div>
+            ) : (
+              <div>
+                <Skeleton height="20px" width="15%" className="mt-2" />
+                <Skeleton height="150px" className="mt-2" />
+              </div>
+            )}
           </div>
-          
         </div>
       </div>
     </MainLayout>

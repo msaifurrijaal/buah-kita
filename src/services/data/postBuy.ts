@@ -1,13 +1,21 @@
 import AxiosInstance from "../api/AxiosInstance";
 
-export const logoutAuth = async (token: string) => {
+export const postBuy = async (
+  token: string,
+  bank: string,
+  amount: string,
+  product_id: string
+) => {
   const axiosInstance = AxiosInstance();
-
   try {
     const response = await axiosInstance
       .post(
-        "user/logout",
-        {},
+        "/product/buy",
+        {
+          bank,
+          amount,
+          product_id,
+        },
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -26,6 +34,7 @@ export const logoutAuth = async (token: string) => {
           data: err,
         };
       });
+
     return response;
   } catch (err) {
     return {
