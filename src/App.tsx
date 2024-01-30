@@ -8,6 +8,8 @@ import DetailProductPage from "./pages/detail-product";
 import PaymentPage from "./pages/payment";
 import InvoicePage from "./pages/invoice";
 import HistoryPage from "./pages/history";
+import { CartContextProvider } from "./context/CartContext";
+import CartPage from "./pages/cart/CartPage";
 
 function App() {
   const router = createBrowserRouter([
@@ -43,12 +45,18 @@ function App() {
       path: "/history",
       element: <HistoryPage />,
     },
+    {
+      path: "/cart",
+      element: <CartPage />,
+    },
   ]);
 
   return (
     <>
       <IsLoginContextProvider>
-        <RouterProvider router={router} />
+        <CartContextProvider>
+          <RouterProvider router={router} />
+        </CartContextProvider>
       </IsLoginContextProvider>
     </>
   );

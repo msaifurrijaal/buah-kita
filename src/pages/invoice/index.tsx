@@ -4,10 +4,18 @@ import { Invoice } from "../../types/interfaces/invoice";
 import { formatDateTime } from "../../utils/date-formatter";
 import ListInvoice from "../../components/elements/invoice/ListInvoice";
 import { rupiahFormatter } from "../../utils/rupiah-formatter";
+import { useEffect } from "react";
 
 const InvoicePage = () => {
   const location = useLocation();
-  const invoice: Invoice | undefined = location.state.invoice;
+  const invoice: Invoice | undefined = location.state?.invoice;
+
+  useEffect(() => {
+    if (invoice == undefined) {
+      window.location.href = "/";
+    }
+  }, []);
+
   return (
     <MainLayout>
       <div className="container py-16 md:py-0">

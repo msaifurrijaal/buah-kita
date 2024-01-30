@@ -15,6 +15,18 @@ const ListProducts = ({ products, isLoading }: ListProductProps) => {
         products.map((item) => (
           <CardProduct fruit={item} padding="px-2" key={item.id} />
         ))}
+      {!isLoading && products && products.length < 1 && (
+        <div className="flex flex-col py-12 justify-center items-center w-full">
+          <img
+            src="/images/products/empty-stroll.png"
+            alt="Keranjang kosong"
+            className="max-w-28"
+          />
+          <p className="text-base lg:text-xl mt-4">
+            Maaf, produk yang anda cari tidak tersedia
+          </p>
+        </div>
+      )}
       {isLoading &&
         [...Array(8)].map((_, index) => (
           <div

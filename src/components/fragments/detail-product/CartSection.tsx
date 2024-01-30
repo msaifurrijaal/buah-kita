@@ -15,9 +15,10 @@ import PopupDialog from "../../elements/popup/PopupDialog";
 type CartSectionProps = {
   isLoading: boolean;
   fruit: Fruit | undefined;
+  addToCart: (productId: number, qty: number) => void;
 };
 
-const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
+const CartSection = ({ isLoading, fruit, addToCart }: CartSectionProps) => {
   const [productCart, setProductCart] = useState(1);
   const [modalOpen, setModalOpen] = useState(false);
   const { isUserLogin } = useIsUserLogin();
@@ -31,6 +32,16 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
           amount: 1,
         };
         navigate("/payment", { state: { checkoutData } });
+      }
+    } else {
+      setModalOpen(true);
+    }
+  };
+
+  const handleAddToCart = () => {
+    if (isUserLogin) {
+      if (fruit != undefined) {
+        addToCart(fruit.id, productCart);
       }
     } else {
       setModalOpen(true);
@@ -83,7 +94,10 @@ const CartSection = ({ isLoading, fruit }: CartSectionProps) => {
               )}
             </p>
           </div>
-          <Button classname="font-medium text-base bg-primary text-white rounded-md py-2 px-4 hover:bg-green-700 mt-3 w-full">
+          <Button
+            onClick={handleAddToCart}
+            classname="font-medium text-base bg-primary text-white rounded-md py-2 px-4 hover:bg-green-700 mt-3 w-full"
+          >
             + Keranjang
           </Button>
           <Button

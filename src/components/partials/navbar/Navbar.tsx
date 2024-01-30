@@ -103,7 +103,7 @@ const Navbar = () => {
             {isUserLogin && (
               <li className="group">
                 <Link
-                  to=""
+                  to="/cart"
                   className="font-medium text-base text-dark py-2 mx-4 md:mx-2 flex"
                 >
                   <div>

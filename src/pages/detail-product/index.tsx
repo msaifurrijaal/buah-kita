@@ -9,11 +9,13 @@ import CartSection from "../../components/fragments/detail-product/CartSection";
 import CartUlasan from "../../components/elements/detail-product/CartUlasan";
 import Skeleton from "react-loading-skeleton";
 import "react-loading-skeleton/dist/skeleton.css";
+import { useCartDispatch } from "../../context/CartContext";
 
 const DetailProductPage = () => {
   const { id } = useParams();
   const [product, setProduct] = useState<Fruit>();
   const [isLoading, setIsLoading] = useState(false);
+  const dispatch = useCartDispatch();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,13 +36,23 @@ const DetailProductPage = () => {
     fetchData();
   }, []);
 
+  const addToCart = (productId: number, qty: number) => {
+    if (dispatch != null) {
+      dispatch({ type: "ADD_TO_CART", payload: { id: productId, qty } });
+    }
+  };
+
   return (
     <MainLayout>
       <div className="py-16 md:py-20 min-h-screen">
         <div className="container flex flex-wrap pt-6">
           <ImageSection isLoading={isLoading} image={product?.img} />
           <DesctiptionSection isLoading={isLoading} fruit={product} />
-          <CartSection isLoading={isLoading} fruit={product} />
+          <CartSection
+            isLoading={isLoading}
+            fruit={product}
+            addToCart={addToCart}
+          />
           <div className="w-full lg:w-9/12 mt-4 px-4 lg:px-2">
             {!isLoading ? (
               <div>
