@@ -1,30 +1,47 @@
-# React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Buahkita 🍉
+Buahkita merupakan sebuah website yang menamwarkan layanan penjualan buah-buahan dari berbagai macam kota. Dengan misi mengurangi food waste, Buahkita menjual produk buah-buahan berlebih dari restoran dan rumah tangga yang masih layak konsumsi
 
-Currently, two official plugins are available:
+## Instalasi Lokal 🖥️
+Untuk menjalankan Buahkita pada mesin lokal, ikuti langkah-langkah berikut: 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. Clone repository Buahkita dari Github
 
-## Expanding the ESLint configuration
+~~~bash  
+  https://github.com/msaifurrijaal/buah-kita.git
+~~~
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+2. Masuk ke directory Buahkita
 
-- Configure the top-level `parserOptions` property like this:
+~~~bash  
+  cd buah-kita
+~~~
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+3. Install package dengan npm
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+~~~bash  
+  npm install
+~~~
+
+4. Jalankan aplikasi
+
+~~~bash  
+  npm run dev
+~~~
+
+5. Buka browser dan akses http://localhost:5173 untuk melihat aplikasi Buahkita.
+
+## Fitur 📝
+Beberapa fitur yang tersedia dalam aplikasi Buahkita adalah:
+
+- Login dan Register.
+- Pencarian produk dan filter berdasarkan lokasi kota.
+- Informasi mengenai produk antara lain foto produk, deskripsi, stock, dan rating.
+- Menambahkan data ke dalam cart atau keranjang belanja.
+- Pembayaran menggunakan Midtrans Simulator BCA
+
+## URL Website 🔗
+
+~~~bash  
+  https://buah-kita.vercel.app/
+~~~
