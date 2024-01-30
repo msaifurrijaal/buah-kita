@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Button from "../../elements/button";
 
 const Hero = () => {
@@ -17,18 +18,22 @@ const Hero = () => {
           Kurangi Food Waste. Sehatkan Diri, Lindungi Lingkungan!
         </p>
         <div className="flex mt-6 lg:mt-10">
-          <Button
-            classname="me-1 font-medium text-base bg-primary text-white rounded-md py-2 px-4 
+          <Link to="/login">
+            <Button
+              classname="me-1 font-medium text-base bg-primary text-white rounded-md py-2 px-4 
             hover:bg-green-700"
-          >
-            Mulai
-          </Button>
-          <Button
-            classname="ms-1 font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
+            >
+              Mulai
+            </Button>
+          </Link>
+          <Link to="/products">
+            <Button
+              classname="ms-1 font-medium text-base bg-white text-primary border border-primary rounded-md py-2 px-4
             hover:border-green-700 hover:text-green-700"
-          >
-            Explore Buah
-          </Button>
+            >
+              Explore Buah
+            </Button>
+          </Link>
         </div>
       </div>
       <div className="w-full md:w-1/2 flex justify-center">

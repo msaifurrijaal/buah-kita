@@ -3,6 +3,7 @@ import "react-loading-skeleton/dist/skeleton.css";
 import { Fruit } from "../../../types/interfaces/fruit";
 import Button from "../../elements/button";
 import CardProduct from "../../elements/card-product";
+import { Link } from "react-router-dom";
 
 type ListProductProps = {
   products: Fruit[];
@@ -40,12 +41,14 @@ const ListProduct = ({ products }: ListProductProps) => {
                   <CardProduct fruit={item} padding="px-6" key={item.id} />
                 ))}
         </div>
-        <Button
-          classname="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
+        <Link to="/products">
+          <Button
+            classname="font-medium text-base bg-primary text-white rounded-md py-2 px-4 
           hover:bg-green-700 mt-4"
-        >
-          Lihat Semua Buah
-        </Button>
+          >
+            Lihat Semua Buah
+          </Button>
+        </Link>
       </div>
     </div>
   );
