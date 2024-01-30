@@ -47,7 +47,7 @@ const ShoppingSummary = ({
         </div>
         <hr className="my-3" />
         <div className="flex justify-between">
-          <h1 className="text-base font-semibold">Asuransi Pengiriman</h1>
+          <h1 className="text-base font-semibold">Total</h1>
           <h1 className="text-base font-semibold">
             {rupiahFormatter(fruit.price * productCart)}
           </h1>
