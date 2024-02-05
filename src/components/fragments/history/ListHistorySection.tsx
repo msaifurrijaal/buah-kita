@@ -16,7 +16,16 @@ const ListHistorySection = ({
     <div className="w-full lg:w-2/3">
       {listHistory &&
         listHistory.length > 1 &&
-        listHistory.map((item: History) => <CardHistory history={item} />)}
+        listHistory.map((item: History, index) => (
+          <div key={index}>
+            <CardHistory history={item} />
+          </div>
+        ))}
+      {!isLoading && listHistory?.length == 0 && (
+        <div className="w-full h-32 flex justify-center items-center">
+          <h1>Anda belum melakukan transaksi sama sekali</h1>
+        </div>
+      )}
       {isLoading &&
         [...Array(4)].map((_, index) => (
           <div className="w-full mb-1" key={index}>
