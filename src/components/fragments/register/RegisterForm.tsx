@@ -1,8 +1,8 @@
 import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react";
-// import { useCookies } from "react-cookie";
 import InputForm from "../../elements/input";
 import Button from "../../elements/button";
 import Loading from "../../elements/loading";
+import { registerAuth } from "../../../services/auth/registerAuth";
 
 type ValidationErrors = {
   username?: string;
@@ -29,9 +29,8 @@ const RegisterForm = () => {
     confirmPass: "",
   });
   const [errors, setErrors] = useState<ErrorsMessageValidation>({});
-  const [registerFailed, ] = useState("");
-  const [isLoading, ] = useState(false);
-//   const setCookie = useCookies(["token"])[1];
+  const [registerFailed, setRegisterFailed] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   const usernameRef = useRef<HTMLInputElement | null>(null);
 
@@ -81,11 +80,34 @@ const RegisterForm = () => {
     usernameRef.current?.focus();
   }, []);
 
-  const handleRegister = (event: FormEvent<HTMLFormElement>) => {
+  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     if (validationForm()) {
-      alert("Register user masih dalam tahap development");
+      setIsLoading(true);
+
+      const data = {
+        username: formData.username,
+        email: formData.email,
+        password: formData.password,
+        phone: formData.phone,
+      };
+
+
+      const result = await registerAuth(
+        data.username,
+        data.email,
+        data.phone,
+        data.password
+      );
+
+      setIsLoading(false);
+      if (result.success) {
+        setRegisterFailed("");
+        window.location.href = "/login";
+      } else {
+        setRegisterFailed(result.data.response.data.message?.username);
+      }
     }
   };
 
@@ -120,6 +142,7 @@ const RegisterForm = () => {
           onInputChange={handleChange}
           errorMessage={errors.phone}
         />
+        <p className="text-xs mt-1">* gunakan nomor telepon dengan diawali 62 (contoh : 628523562728)</p>
         <InputForm
           classname="mt-4"
           label="Password"

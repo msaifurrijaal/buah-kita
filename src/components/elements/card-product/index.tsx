@@ -21,6 +21,7 @@ const CardProduct = ({ fruit, padding }: CardProductProps) => {
             <img
               src={fruit.img}
               alt={fruit.name}
+              loading="lazy"
               className="w-full h-60 object-cover"
             />
             <div className="absolute top-0 left-0 px-4 py-2 bg-white rounded-br-lg text-dark flex items-center backdrop:blur-md bg-opacity-80">

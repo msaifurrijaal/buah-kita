@@ -9,7 +9,8 @@ import PaymentPage from "./pages/payment";
 import InvoicePage from "./pages/invoice";
 import HistoryPage from "./pages/history";
 import { CartContextProvider } from "./context/CartContext";
-import CartPage from "./pages/cart/CartPage";
+import CartPage from "./pages/cart";
+import ContactPage from "./pages/contact";
 
 function App() {
   const router = createBrowserRouter([
@@ -48,6 +49,10 @@ function App() {
     {
       path: "/cart",
       element: <CartPage />,
+    },
+    {
+      path: "/contact",
+      element: <ContactPage />,
     },
   ]);
 

@@ -67,24 +67,18 @@ const LoginForm = () => {
       setIsLoading(true);
 
       const data = {
-        username: (event.target as any).username.value,
-        password: (event.target as any).password.value,
+        username: formData.username,
+        password: formData.password,
       };
 
-      try {
-        const result = await loginAuth(data.username, data.password);
-        setIsLoading(false);
-        if (result.success) {
-          console.log(result.data.data.data.token)
-          setLoginFailed("");
-          setCookie("token", result.data.data.data.token);
-          window.location.href = "/";
-        } else {
-          setLoginFailed(result.data.response.data.message);
-        }
-      } catch (error) {
-        setIsLoading(false);
-        console.log(error);
+      const result = await loginAuth(data.username, data.password);
+      setIsLoading(false);
+      if (result.success) {
+        setLoginFailed("");
+        setCookie("token", result.data.data.data.token);
+        window.location.href = "/";
+      } else {
+        setLoginFailed(result.data.response.data.message);
       }
     }
   };

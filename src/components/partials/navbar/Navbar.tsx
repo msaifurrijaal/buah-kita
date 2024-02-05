@@ -9,9 +9,9 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useIsUserLogin } from "../../../context/IsLogin";
-import { logoutAuth } from "../../../services/auth/logoutAuth";
 import { useCookies } from "react-cookie";
 import PopupDialog from "../../elements/popup/PopupDialog";
+import { logoutAuth } from "../../../services/auth/logoutAuth";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -81,7 +81,7 @@ const Navbar = () => {
             </li>
             <li className="group">
               <Link
-                to=""
+                to="/contact"
                 className="font-medium text-base text-dark py-2 mx-4 flex group-hover:text-primary"
               >
                 Kontak

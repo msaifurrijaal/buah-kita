@@ -1,6 +1,7 @@
 import { ChangeEvent, Ref, forwardRef } from "react";
 import Label from "./Label";
 import Input from "./Input";
+import InputPassword from "./InputPassword";
 
 type InputFormProps = {
   type: string;
@@ -26,13 +27,22 @@ const InputForm = forwardRef(
     return (
       <div className={`w-full ${classname}`}>
         <Label htmlFor={name}>{label}</Label>
-        <Input
-          type={type}
-          name={name}
-          placeholder={placeholder}
-          ref={ref}
-          onInputChange={onInputChange}
-        />
+        {type === "password" ? (
+          <InputPassword
+            name={name}
+            placeholder={placeholder}
+            onInputChange={onInputChange}
+          />
+        ) : (
+          <Input
+            type={type}
+            name={name}
+            placeholder={placeholder}
+            ref={ref}
+            onInputChange={onInputChange}
+          />
+        )}
+
         {errorMessage && <p className="text-red-500">{errorMessage}</p>}
       </div>
     );
