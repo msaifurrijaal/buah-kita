@@ -6,6 +6,7 @@ import { Fruit } from "../../types/interfaces/fruit";
 import ListProduct from "../../components/fragments/home/ListProducts";
 import AboutSection from "../../components/fragments/home/AboutSection";
 import RulesSection from "../../components/fragments/home/RulesSection";
+import PartnerSection from "../../components/fragments/home/PartnerSection";
 
 const HomePage = () => {
   const [products, setProducts] = useState<Fruit[]>([]);
@@ -34,6 +35,7 @@ const HomePage = () => {
         <RulesSection />
         <ListProduct products={products} />
         <AboutSection />
+        <PartnerSection />
       </div>
     </MainLayout>
   );

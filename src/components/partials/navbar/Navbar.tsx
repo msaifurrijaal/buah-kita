@@ -7,7 +7,7 @@ import {
   faUser,
   faXmark,
 } from "@fortawesome/free-solid-svg-icons";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { useIsUserLogin } from "../../../context/IsLogin";
 import { useCookies } from "react-cookie";
 import PopupDialog from "../../elements/popup/PopupDialog";
@@ -19,6 +19,7 @@ const Navbar = () => {
   const [isLoading, setIsLoading] = useState(false);
   const { isUserLogin } = useIsUserLogin();
   const [cookies, , removeCookie] = useCookies(["token"]);
+  const location = useLocation();
 
   const handleLogout = async () => {
     try {
@@ -66,7 +67,9 @@ const Navbar = () => {
             <li className="group">
               <Link
                 to="/"
-                className="font-medium text-base text-dark py-2 mx-4 flex group-hover:text-primary"
+                className={`font-medium text-base ${
+                  location.pathname === "/" ? "text-primary" : "text-dark"
+                } py-2 mx-4 flex group-hover:text-primary`}
               >
                 Beranda
               </Link>
@@ -74,7 +77,11 @@ const Navbar = () => {
             <li className="group">
               <Link
                 to="/products"
-                className="font-medium text-base text-dark py-2 mx-4 flex group-hover:text-primary"
+                className={`font-medium text-base ${
+                  location.pathname === "/products"
+                    ? "text-primary"
+                    : "text-dark"
+                } py-2 mx-4 flex group-hover:text-primary`}
               >
                 Produk
               </Link>
@@ -82,7 +89,11 @@ const Navbar = () => {
             <li className="group">
               <Link
                 to="/contact"
-                className="font-medium text-base text-dark py-2 mx-4 flex group-hover:text-primary"
+                className={`font-medium text-base ${
+                  location.pathname === "/contact"
+                    ? "text-primary"
+                    : "text-dark"
+                } py-2 mx-4 flex group-hover:text-primary`}
               >
                 Kontak
               </Link>

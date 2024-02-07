@@ -106,7 +106,7 @@ const LoginForm = () => {
           errorMessage={errors.password}
         />
         <div className="flex justify-center">
-          <Button classname="bg-primary text-white mt-6 lg:mt-12" type="submit">
+          <Button disabled={isLoading} classname="bg-primary text-white mt-6 lg:mt-12" type="submit">
             Masuk
           </Button>
         </div>
