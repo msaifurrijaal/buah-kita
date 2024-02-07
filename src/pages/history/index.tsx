@@ -1,6 +1,5 @@
 import MainLayout from "../../components/partials/layout/MainLayout";
 import LayananSection from "../../components/fragments/history/LayananSection";
-import { useBeforeLogin } from "../../components/hooks/useAuth";
 import { useEffect, useState } from "react";
 import { useCookies } from "react-cookie";
 import { getHistory } from "../../services/data/getHistory";
@@ -8,7 +7,6 @@ import { History } from "../../types/interfaces/history";
 import ListHistorySection from "../../components/fragments/history/ListHistorySection";
 
 const HistoryPage = () => {
-  useBeforeLogin();
   const [history, setHistory] = useState<History[]>([]);
   const [cookies, ,] = useCookies(["token"]);
   const [isLoading, setLoading] = useState(false);

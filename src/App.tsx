@@ -11,6 +11,7 @@ import HistoryPage from "./pages/history";
 import { CartContextProvider } from "./context/CartContext";
 import CartPage from "./pages/cart";
 import ContactPage from "./pages/contact";
+import { UserAuthRoute, UserPrivateRoute } from "./components/routes/UserRoute";
 
 function App() {
   const router = createBrowserRouter([
@@ -20,11 +21,19 @@ function App() {
     },
     {
       path: "/login",
-      element: <LoginPage />,
+      element: (
+        <UserAuthRoute>
+          <LoginPage />
+        </UserAuthRoute>
+      ),
     },
     {
       path: "/register",
-      element: <RegisterPage />,
+      element: (
+        <UserAuthRoute>
+          <RegisterPage />
+        </UserAuthRoute>
+      ),
     },
     {
       path: "/products",
@@ -36,19 +45,35 @@ function App() {
     },
     {
       path: "/payment",
-      element: <PaymentPage />,
+      element: (
+        <UserPrivateRoute>
+          <PaymentPage />
+        </UserPrivateRoute>
+      ),
     },
     {
       path: "/invoice",
-      element: <InvoicePage />,
+      element: (
+        <UserPrivateRoute>
+          <InvoicePage />
+        </UserPrivateRoute>
+      ),
     },
     {
       path: "/history",
-      element: <HistoryPage />,
+      element: (
+        <UserPrivateRoute>
+          <HistoryPage />
+        </UserPrivateRoute>
+      ),
     },
     {
       path: "/cart",
-      element: <CartPage />,
+      element: (
+        <UserPrivateRoute>
+          <CartPage />
+        </UserPrivateRoute>
+      ),
     },
     {
       path: "/contact",
