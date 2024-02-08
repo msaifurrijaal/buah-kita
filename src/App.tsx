@@ -1,16 +1,6 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-// import HomePage from "./pages/home";
-// import LoginPage from "./pages/login";
 import { IsLoginContextProvider } from "./context/IsLogin";
-// import ProductPage from "./pages/products";
-// import RegisterPage from "./pages/register";
-// import DetailProductPage from "./pages/detail-product";
-// import PaymentPage from "./pages/payment";
-// import InvoicePage from "./pages/invoice";
-// import HistoryPage from "./pages/history";
 import { CartContextProvider } from "./context/CartContext";
-// import CartPage from "./pages/cart";
-// import ContactPage from "./pages/contact";
 import { UserAuthRoute, UserPrivateRoute } from "./components/routes/UserRoute";
 import React, { Suspense } from "react";
 import LoadingPage from "./components/elements/loading/LoadingPage";
