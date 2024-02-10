@@ -2,7 +2,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 import MainLayout from "../../components/partials/layout/MainLayout";
 import { CheckoutData } from "../../types/interfaces/checkoutData";
 import WarningCart from "../../components/elements/payment/WarningCard";
-import ButtonAddCart from "../../components/elements/button/ButtonAddCart";
 import { useEffect, useState } from "react";
 import { PaymentMethod } from "../../types/interfaces/paymentMethod";
 import PaymentMethodCard from "../../components/elements/payment/PaymentMethodCard";
@@ -11,6 +10,7 @@ import { postBuy } from "../../services/data/postBuy";
 import { useCookies } from "react-cookie";
 import PopupLoading from "../../components/elements/popup/PopupLoading";
 import { Invoice } from "../../types/interfaces/invoice";
+import ProductSection from "../../components/fragments/payment/ProductSection";
 
 const paymentMethod: PaymentMethod[] = [
   {
@@ -82,46 +82,11 @@ const PaymentPage = () => {
             <div className="flex flex-wrap mt-4">
               <div className="w-full md:w-2/3 md:pe-1">
                 <WarningCart />
-                <h1 className="mt-4 text-lg md:text-xl font-semibold">
-                  Barang yang dibeli
-                </h1>
-                <div className="flex flex-wrap mt-2">
-                  <div className="w-2/6 sm:w-1/6 p-1 aspect-w-1 aspect-h-1">
-                    <img
-                      src={checkoutData.fruit.img}
-                      alt={checkoutData.fruit.name}
-                      className="object-cover w-2/3 aspect-square rounded-lg"
-                    />
-                  </div>
-                  <div className="w-4/6 sm:w-4/6">
-                    <p className="text-base font-semibold">
-                      {checkoutData.fruit.name}
-                    </p>
-                    <p className="text-sm text-gray-500 mt-1">
-                      Berat : {checkoutData.fruit.weight} Kg
-                    </p>
-                    <p className="text-sm text-red-500 mt-1">
-                      Sisa : {checkoutData.fruit.stock - productCart}
-                    </p>
-                  </div>
-                  <div className="w-full sm:w-1/6 flex">
-                    <div className="ml-auto">
-                      <ButtonAddCart
-                        productCart={productCart}
-                        incrementCart={() =>
-                          productCart == checkoutData.fruit.stock
-                            ? setProductCart(productCart)
-                            : setProductCart(productCart + 1)
-                        }
-                        decrementCart={() =>
-                          productCart > 1
-                            ? setProductCart(productCart - 1)
-                            : setProductCart(productCart)
-                        }
-                      />
-                    </div>
-                  </div>
-                </div>
+                <ProductSection
+                  checkoutData={checkoutData}
+                  productCart={productCart}
+                  setProductCart={setProductCart}
+                />
                 <h1 className="mt-4 text-lg md:text-xl font-semibold">
                   Pembayaran
                 </h1>
